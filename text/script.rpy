@@ -40,13 +40,11 @@ label start:
 	s "So, what’s the plan?"
 	k "Plan?"
 	s "Heroes always have a plan."
-	k "Heh. I’m all out."
-	menu:
-		"..." 
+	menu: 
+		"Heh. I’m all out.":
+			call all_out
 		"Heroes wouldn’t be hiding while the world burns.":
-			call world_burns
-		"My people's dreams burn every away as I sit here.":
-			call dreams_burn
+			call world_burn
 		
 	s "Oh. I see. So you’ve given up, right?"
 	k "Given up? Don’t try to bait me, dear sword."
@@ -83,10 +81,10 @@ label fear_my_end:
 	k "Posh words for a thing made to bring death."
 	return
 	
-label world_burns:
+label all_out:
 	s "TODO"
 	return
 
-label dreams_burn:
+label world_burn:
 	s "TODO"
 	return
