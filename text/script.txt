@@ -16,18 +16,16 @@ label start:
 	scene bg room
 
 	# This shows a character sprite. A placeholder is used, but you can
-	# replace it by adding a file named "eileen happy.png" to the images
+	# replace it by adding a file named "sword.png" to the images
 	# directory.
 	show sword
-	show knight
 
 	# These display lines of dialogue.
-
-	e "Did you change the name and save directory of the game in options.rpy?"
 	k "I’m so tired..."
 	s "Rough day?"
-	k "Rough life. But yes, today has been … eventful"
-	s "Events end, do they not?"
+	k "Rough life. But yes, today has been ... eventful"
+	s "Eventful - that's certainly a way to describe whatever happened to leave you here, covered in the blood of your enemies. And quite of a bit of your own blood too."
+	s "And there's something new today, something delicious, something I haven't seen in you in a long time. Is that fear?"
 	menu:
 		"What do you fear?"
 		"I fear the end":
@@ -69,9 +67,10 @@ label start:
 
 label fear_the_end: 
 	s "The end of what? The end of this battle? The end of this war? Your own end?"
-	k "I don’t even know anymore. Does it have to be one or the other?"
-	s "Everything ends."
-	k "You end?"
+	k "The end of this kingdom, and my people's dreams. Every passing moment I can feel their dreams being burned away like fireflies, no matter how I may clutch at them... they are surely lost the longer I sit here."
+	k "Why am I even talking to you? When so much is being lost?"
+	s "Yes, everything will end - unless you're willing to pay the right price."
+	k "How long have you waited to try and strike this bargain? You don't ever stop trying do you? I suppose your wretched 'dreams' never end."
 	return
 
 label fear_my_end:
