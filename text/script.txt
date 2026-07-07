@@ -44,22 +44,12 @@ label start:
 		"Heroes wouldn’t be hiding while the world burns.":
 			call world_burn
 		
-	s "Oh. I see. So you’ve given up, right?"
-	k "Given up? Don’t try to bait me, dear sword."
-	s "Bait only works if there’s something there to catch. I simply meant to ask what you meant by 'all out'."
-	k "I’m all out of ideas. All out of allies. All out of energy. All out of blood pretty soon. All out of..."
-	s "..."
-	k "I just wanted to see the moon one last time. Know the peace of night one last time. Perhaps have a conversation with a nonsensical sentient sword."
-	s "What if this sentient sword had some ideas?"
-	k "Ah, there’s the bait again. Last minute saviors are a thing of fairytales. Or perhaps nightmares?"
-	s "One person’s fairytale is another person’s nightmare."
-	k "Ah but both are dreams. Hmm... dreams..."
+	
 	s "Well then..."
 	s "A dead hero can’t save the world."
 	k "It sounds like you’ve got a plan. Does that make you a hero?"
 	s "Not a hero. But perhaps the tool to change fate."
 	k "How do you mean that?"
-
 	s "I am a legendary sword, wielded by heroes to alter the course of entire wars, even civilizations. My blade makes my wielder an unstoppable force, rendering ti"
 	k "How lucky of me."
 	
@@ -81,8 +71,44 @@ label fear_my_end:
 	return
 	
 label all_out:
-	s "TODO"
+	s "Oh. I see. So you’ve given up, right?"
+	k "Given up? Don’t try to bait me, dear sword."
+	s "Bait only works if there’s something there to catch. I simply meant to ask what you meant by 'all out'."
+	k "I’m all out of ideas. All out of allies. All out of energy. All out of blood pretty soon. All out of..."
+	s "..."
+	k "I just wanted to see the moon one last time. Know the peace of night one last time. Perhaps have a conversation with a nonsensical sentient sword."
+	s "What if this sentient sword had some ideas?"
+	k "Ah, there’s the bait again. Last minute saviors are a thing of fairytales. Or perhaps nightmares?"
+	s "One person’s fairytale is another person’s nightmare."
+	k "Ah but both are dreams. Hmm... dreams..."
+	s "There you go again, drifting away from our conversation. My first in many centuries actually. I feel like I deserve your full attention."
+	k "Centuries? This castle has only been here for maybe a century. I was posted here 20 years ago and I've roamed every one of these halls and rooms. I've never seen you before. How is it we happen to meet and have this discussion right before the end?"
+	s "People like bragging about doing things on their own. They're ashamed of the tools they had to use to get the job done. So I get hidden away a lot. Deep dungeons. Locked vaults. Faraway castles that no one cares about"
+	k "Did the king bring you here?"
+	s "Hard to tell when hidden away in a bag. But I remember fighting. A lot of fighting. A lot of cursing and crying. Then darkness."
+	k 
+	menu: 
+		"Are you a cursed sword?":
+			call cursed_sword
+		"All of that sounds like bad news":
+			call bad_news
 	return
+
+
+label cursed_sword:
+	s "Cursed is a subjective term. Do I morph a human into something he never was before? No. Does my wielder have more choices they can make once they have me by hand? I'd like to think of myself as an opportunity maker"
+	k "People can be terrible if given the incentive. But I'd not be naive enough to say people don't seek power and whatever gives them that power is a gift and a curse depending on who you are. My question has always been, to what extent can you ignore the consequences? I'm guessing you'd guarentee me a win tonight if I picked you up?"
+	s "Consequences and guilt are not in my purview."
+	k "You're not wrong. I'm sure every person who picked you up thought that they'd be able to control themselves. 20 years I've protected the people here. So many of them are lying dead out there. What will it mean to save the few remaining? There are supposed to be reinforcements coming but who knows when."
+	s "Is there a minimum life count when it's worth the trouble?"
+	k "Again, you confuse me for a fairytale hero. Heroes don't hide while the world burns." 
+	#This end jumps into the world_burn label.
+	return
+label bad_news:
+	k "And I've had bad news all day. I don't need to add something to my life that causes all that bad news. I've had regular ol' swords and that's terrible enough. And while I'm on the topic of bad news, where did they come from? Those caves have been empty for decades. There haven't even been bear or wolf attacks recently. Actually come to think of it, I can't remember the last time I got a report from the forest scouts about people being attacked by any animals. It used to be a regular thing."
+	s ""
+	return
+
 
 label world_burn:
 	s "TODO"
