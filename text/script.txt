@@ -44,7 +44,6 @@ label start:
 		"Heroes wouldn’t be hiding while the world burns.":
 			call world_burn
 		
-	
 	s "Well then..."
 	s "A dead hero can’t save the world."
 	k "It sounds like you’ve got a plan. Does that make you a hero?"
@@ -52,7 +51,6 @@ label start:
 	k "How do you mean that?"
 	s "I am a legendary sword, wielded by heroes to alter the course of entire wars, even civilizations. My blade makes my wielder an unstoppable force, rendering ti"
 	k "How lucky of me."
-	
 	return
 
 label fear_the_end: 
@@ -94,7 +92,6 @@ label all_out:
 			call bad_news
 	return
 
-
 label cursed_sword:
 	s "Cursed is a subjective term. Do I morph a human into something he never was before? No. Does my wielder have more choices they can make once they have me by hand? I'd like to think of myself as an opportunity maker"
 	k "People can be terrible if given the incentive. But I'd not be naive enough to say people don't seek power and whatever gives them that power is a gift and a curse depending on who you are. My question has always been, to what extent can you ignore the consequences? I'm guessing you'd guarentee me a win tonight if I picked you up?"
@@ -106,10 +103,37 @@ label cursed_sword:
 	return
 label bad_news:
 	k "And I've had bad news all day. I don't need to add something to my life that causes all that bad news. I've had regular ol' swords and that's terrible enough. And while I'm on the topic of bad news, where did they come from? Those caves have been empty for decades. There haven't even been bear or wolf attacks recently. Actually come to think of it, I can't remember the last time I got a report from the forest scouts about people being attacked by any animals. It used to be a regular thing."
-	s ""
+	s "Maybe the animals got bored of human flesh. Maybe they all moved on"
+	k "Or there weren't there to attack. I've seen kids spending more and more time out there in the deep forests. I've wondered what made them so bold. Argh, I should have looked into it more. Maybe I could have seen this coming. Stopped it before..."
+	s: "Feeling guilty about consequences that you couldn't predict seems to be a common human emotion. Do you think the monsters out there have guilt about their attack? Or the people they eat?"
+	k "You speak so easily about such gore. And coming from me, that's saying a lot. But you're not wrong. I don't think those monsters even know what they're attacking. They're just mindless and ravaging every living thing they see. I heard a story around a campfire when I was a child about a purge that happened around these parts. I never put it together that this castle was the place and that the purge meant an attack of monsters in the middle of the night."
+	s "Feels like this has happened before. And it will happen again. Unless..."
+	k "Sigh. And we come back to it now huh? Alright let's put everything on the table."
+	#This returns you to the world_burn label
 	return
-
 
 label world_burn:
-	s "TODO"
+	s "If heroes don't hide while the world burns and you are not a hero, then what is your purpose on this seemingly last day?"
+	k "Well I came in here to enjoy a quiet, moon filled night before..."
+	s "And the plan was to lay down and die?"
+	k "When you put it so bluntly, I feel like a coward. But essentially yes. I'm hurt and it isn't a small wound. I can barely stand. It hurts every time I breathe in deeply. I've led a life full of violence. I wanted one night of peace. My last night I wanted spent on this cool stone floor."
+	s "Sounds nice."
+	k "It is. It was. Until a talking sword gave me the one thing I really didn't need at this point. Hope. Tell me straight sword, can you help win this battle tonight?"
+	s "Yes"
+	k "Woah. I expected more cryptic talk and riddles. Stories always have these be a test of wills and intelligence. The hero solves the sword's puzzles before he earns it."
+	s "Puzzles bore me. And there is little wit and intelligence to weild me so why would I waste my time on it? And we've already established that you're not the hero of this story."
+	k "Fair point. Even if you give me the edge with the battle, I am still hurt. Is this one those last hurrahs thing? I weild you, I win but die at the end of it?"
+	s "Your most fatal wounds will heal enough to let you live. There is no promise that you won't get hurt anew during the battle to come. But yes, you will get an edge. My edge. And it will be a glory to behold."
+	k "You think pretty highly of yourself. But I guess I woudn't want a depressed talking sword. You speak of glory. What about after? Will I be able to put you down? Will I be filled with bloodlust and start killing everything in sight? Like those monsters out there?"
+	s "You have a lot of stories about swords huh?"
+	k "Once you have soldiers who fight for you, scouts who report to you, and pages who run around for you, one starts to have more free time for stories."
+	s "Feels like the swords don't get much of a say. How would you feel if all of your secrets were spilled into books? Your mystery and intrigue taken away by tales of morality and hero worship?"
+	k "So you're saying I shouldn't ask more questions? Leave it to intrigue and mystery?"
+	s "I'm saying sometimes you look at the goal and pick up to the tool you need to get to that goal."
+	K "Alright. One last question then. What happened to your previous master?"
+	s "Oh that's an easy one. You slayed him an hour ago."
 	return
+
+#The background fades a bit with a new window popping up - So what do you do? Do you choose the sword and win the battle? Or do you end the night peacefully on your own terms?
+#If the player chooses to pick up the sword, the following epilogue appears: The knight felt his worst injuries stitch up, felt his strength return and his eyes cleared up. The battle was indeed glorious and the few innocents he saved would drink to his name for generations to come. But what they never knew were his whereabouts. The last thing anyone ever knew was him chasing the monsters deep into the caves from whence they came pouring out that night. Some say he's still fighting, being healed just enough and being driven just enough by the sword for glory. Many have gone into the caves looking for him but either never came out or came out having hit a dead end, claiming they'd found the ends of the cave system but no person or even an animal. Just emptiness.
+#If the player chooses to end the night, the following epilogue appears: The knight took his last breaths in peace. The fighting eventually ended. When reinforcements arrived in the morning, there was no one left to save. When the knight's body was found, there was no sword to be found. The caves were sealed up and guards posted although no attack ever came again. For a few generations at least.
