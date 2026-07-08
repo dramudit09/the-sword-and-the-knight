@@ -9,7 +9,7 @@ var text_speed : String
 var volume : float
 
 func _ready() -> void:
-	text_speed = 	text_speed_option_button.get_item_text(text_speed_option_button.get_selected_id())
+	text_speed = text_speed_option_button.get_item_text(text_speed_option_button.get_selected_id())
 	print("Text speed: ", text_speed)
 	volume = volume_slider.value
 	print("Volume: ", volume)
