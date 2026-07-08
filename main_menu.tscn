@@ -3,6 +3,12 @@
 [ext_resource type="FontFile" uid="uid://ccwrffin6s2q4" path="res://font/strandall demo.ttf" id="1_06t4h"]
 [ext_resource type="Script" uid="uid://fuq3ulvwfr4a" path="res://main_menu.gd" id="1_7vrkn"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_fu7sn"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_jix8l"]
+font_size = 12
+
 [sub_resource type="LabelSettings" id="LabelSettings_7vrkn"]
 font = ExtResource("1_06t4h")
 font_size = 120
@@ -48,10 +54,26 @@ text = "Quit"
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="Label" type="Label" parent="HBoxContainer/LeftSideMainMenuContainer/VBoxContainer2" unique_id=1292283544]
+[node name="TurtlePackLabel" type="Label" parent="HBoxContainer/LeftSideMainMenuContainer/VBoxContainer2" unique_id=1292283544]
 layout_mode = 2
 text = "Made by The Turtle Pack"
+label_settings = SubResource("LabelSettings_fu7sn")
 horizontal_alignment = 1
+
+[node name="JameGamLabel" type="Label" parent="HBoxContainer/LeftSideMainMenuContainer/VBoxContainer2" unique_id=1340659978]
+layout_mode = 2
+text = "This game was made for the O2A2 VN Jam 2026, 
+a micro Visual Novel jam with strict asset 
+limitations and a 1000 word limit."
+label_settings = SubResource("LabelSettings_jix8l")
+horizontal_alignment = 1
+
+[node name="LinkButton" type="LinkButton" parent="HBoxContainer/LeftSideMainMenuContainer/VBoxContainer2" unique_id=841447777]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 12
+text = "Click here for more details on the game jam"
+uri = "https://itch.io/jam/o2a2-2026"
 
 [node name="CenterContainer" type="CenterContainer" parent="HBoxContainer" unique_id=1077629544]
 layout_mode = 2
@@ -66,4 +88,5 @@ label_settings = SubResource("LabelSettings_7vrkn")
 horizontal_alignment = 1
 
 [connection signal="pressed" from="HBoxContainer/LeftSideMainMenuContainer/VBoxContainer3/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/LeftSideMainMenuContainer/VBoxContainer3/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/LeftSideMainMenuContainer/VBoxContainer3/QuitButton" to="." method="_on_quit_button_pressed"]

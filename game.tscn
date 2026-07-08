@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dajmuyuiomjhk"]
+
+[ext_resource type="PackedScene" uid="uid://b3bbwafvrc8c0" path="res://main_menu.tscn" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://cafoyi0w7d0ie" path="res://game.gd" id="1_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://2xxoncxeah2f" path="res://settings_menu.tscn" id="3_feb5d"]
+
+[node name="Game" type="Node" unique_id=243095038]
+script = ExtResource("1_e2o6t")
+
+[node name="MainMenu" parent="." unique_id=1363726924 instance=ExtResource("1_80nbo")]
+unique_name_in_owner = true
+
+[node name="SettingsMenu" parent="." unique_id=433415326 instance=ExtResource("3_feb5d")]
+unique_name_in_owner = true
+visible = false
+
+[connection signal="settings_pressed" from="MainMenu" to="." method="_on_main_menu_settings_pressed"]
