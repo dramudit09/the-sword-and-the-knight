@@ -6,4 +6,7 @@ extends Node
 func _on_main_menu_settings_pressed() -> void:
 	main_menu.visible = false
 	settings_menu.visible = true
-	pass # Replace with function body.
+
+func _on_settings_menu_return_pressed() -> void:
+	main_menu.visible = true
+	settings_menu.visible = false

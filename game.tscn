@@ -15,3 +15,4 @@ unique_name_in_owner = true
 visible = false
 
 [connection signal="settings_pressed" from="MainMenu" to="." method="_on_main_menu_settings_pressed"]
+[connection signal="return_pressed" from="SettingsMenu" to="." method="_on_settings_menu_return_pressed"]
