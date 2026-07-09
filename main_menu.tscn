@@ -2,6 +2,9 @@
 
 [ext_resource type="FontFile" uid="uid://ccwrffin6s2q4" path="res://font/strandall demo.ttf" id="1_06t4h"]
 [ext_resource type="Script" uid="uid://fuq3ulvwfr4a" path="res://main_menu.gd" id="1_7vrkn"]
+[ext_resource type="Material" uid="uid://u8hnkk6n28ui" path="res://Flame/FireParticleSystem.tres" id="5_dy7ct"]
+[ext_resource type="Script" uid="uid://djwnamqtr482q" path="res://Flame/Flame.gd" id="6_0o4t1"]
+[ext_resource type="Material" uid="uid://b0w5x8ios2q3q" path="res://Flame/FlameMaterial.tres" id="7_0k4wn"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fu7sn"]
 font_size = 20
@@ -12,6 +15,15 @@ font_size = 12
 [sub_resource type="LabelSettings" id="LabelSettings_7vrkn"]
 font = ExtResource("1_06t4h")
 font_size = 120
+
+[sub_resource type="Gradient" id="Gradient_cm266"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g8g3n"]
+gradient = SubResource("Gradient_cm266")
+width = 30
+height = 30
 
 [node name="MainMenu" type="MarginContainer" unique_id=1363726924]
 anchors_preset = 15
@@ -33,21 +45,65 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 15
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer/LeftSideMainMenuContainer" unique_id=1703931634]
+[node name="CursorMarginContainer" type="MarginContainer" parent="HBoxContainer/LeftSideMainMenuContainer" unique_id=1153773012]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_constants/margin_right = 64
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer/LeftSideMainMenuContainer/CursorMarginContainer" unique_id=1703931634]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_constants/separation = 15
 
-[node name="NewGameButton" type="Button" parent="HBoxContainer/LeftSideMainMenuContainer/VBoxContainer3" unique_id=2058244989]
+[node name="NewGameContainer" type="HBoxContainer" parent="HBoxContainer/LeftSideMainMenuContainer/CursorMarginContainer/VBoxContainer3" unique_id=435157912]
 layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="NewGameButtonCursor" type="ColorRect" parent="HBoxContainer/LeftSideMainMenuContainer/CursorMarginContainer/VBoxContainer3/NewGameContainer" unique_id=678998593]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="NewGameButton" type="Button" parent="HBoxContainer/LeftSideMainMenuContainer/CursorMarginContainer/VBoxContainer3/NewGameContainer" unique_id=2058244989]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
 text = "New Game"
 
-[node name="SettingsButton" type="Button" parent="HBoxContainer/LeftSideMainMenuContainer/VBoxContainer3" unique_id=1474284385]
+[node name="SettingsButtonContainer" type="HBoxContainer" parent="HBoxContainer/LeftSideMainMenuContainer/CursorMarginContainer/VBoxContainer3" unique_id=283509151]
 layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="SettingsButtonCursor" type="ColorRect" parent="HBoxContainer/LeftSideMainMenuContainer/CursorMarginContainer/VBoxContainer3/SettingsButtonContainer" unique_id=247544114]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="SettingsButton" type="Button" parent="HBoxContainer/LeftSideMainMenuContainer/CursorMarginContainer/VBoxContainer3/SettingsButtonContainer" unique_id=1474284385]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Settings"
 
-[node name="QuitButton" type="Button" parent="HBoxContainer/LeftSideMainMenuContainer/VBoxContainer3" unique_id=1553249080]
+[node name="QuitButtonContainer" type="HBoxContainer" parent="HBoxContainer/LeftSideMainMenuContainer/CursorMarginContainer/VBoxContainer3" unique_id=968639851]
 layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="QuitButtonCursor" type="ColorRect" parent="HBoxContainer/LeftSideMainMenuContainer/CursorMarginContainer/VBoxContainer3/QuitButtonContainer" unique_id=10812900]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="QuitButton" type="Button" parent="HBoxContainer/LeftSideMainMenuContainer/CursorMarginContainer/VBoxContainer3/QuitButtonContainer" unique_id=1553249080]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Quit"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/LeftSideMainMenuContainer" unique_id=686147730]
@@ -87,6 +143,15 @@ The Knight"
 label_settings = SubResource("LabelSettings_7vrkn")
 horizontal_alignment = 1
 
-[connection signal="pressed" from="HBoxContainer/LeftSideMainMenuContainer/VBoxContainer3/NewGameButton" to="." method="_on_new_game_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/LeftSideMainMenuContainer/VBoxContainer3/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/LeftSideMainMenuContainer/VBoxContainer3/QuitButton" to="." method="_on_quit_button_pressed"]
+[node name="FlameCursor" type="GPUParticles2D" parent="." unique_id=1922054806]
+unique_name_in_owner = true
+material = ExtResource("7_0k4wn")
+position = Vector2(126, 154)
+amount = 200
+texture = SubResource("GradientTexture2D_g8g3n")
+process_material = ExtResource("5_dy7ct")
+script = ExtResource("6_0o4t1")
+
+[connection signal="pressed" from="HBoxContainer/LeftSideMainMenuContainer/CursorMarginContainer/VBoxContainer3/NewGameContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/LeftSideMainMenuContainer/CursorMarginContainer/VBoxContainer3/SettingsButtonContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/LeftSideMainMenuContainer/CursorMarginContainer/VBoxContainer3/QuitButtonContainer/QuitButton" to="." method="_on_quit_button_pressed"]
