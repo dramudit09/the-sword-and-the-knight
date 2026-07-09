@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://mmttyvjeel0p"]
+
+[ext_resource type="Script" uid="uid://wgniki0563wm" path="res://visual_novel.gd" id="1_4uc8f"]
+[ext_resource type="Texture2D" uid="uid://dyamdk03rd5kw" path="res://The Sword and Knight Background.png" id="2_5cwds"]
+
+[node name="VisualNovel" type="Node" unique_id=1225728842]
+script = ExtResource("1_4uc8f")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1048651582]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 6
+size_flags_vertical = 3
+texture = ExtResource("2_5cwds")
+
+[node name="DialogueLabel" type="RichTextLabel" parent="." unique_id=1295800170]
+unique_name_in_owner = true
+offset_left = 10.0
+offset_top = 440.0
+offset_right = 951.0
+offset_bottom = 534.0
+text = "Test Text"
