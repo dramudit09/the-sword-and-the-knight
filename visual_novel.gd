@@ -129,10 +129,18 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
 		dialogue_index += 1
 		var dia = game_script.instructions[running_game_menu][running_game_branch].pop_front()
+		if(not dia):
+			print(game_script.menu_stack)
+			print(game_script.branch_stack)
+			running_game_menu = game_script.menu_stack.pop_back()
+			running_game_branch = game_script.branch_stack.pop_back()
+			dia = game_script.instructions[running_game_menu][running_game_branch].pop_front()
+		print(dia)
 		if dia is Dictionary:
 			running_game_menu = dia["menu_name"]
 			dia = running_game_menu + "\n"
 			var choices = game_script.instructions[running_game_menu].keys()
+			# TODO: Show more any number of choices, not just two
 			dia += choices[0] + "\n"
 			dia += choices[1] + "\n"
 			running_game_branch = choices[0]
