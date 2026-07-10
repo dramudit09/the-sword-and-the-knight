@@ -6,133 +6,93 @@ define s = Character("Sword")
 define k = Character("Knight")
 
 # The game starts here.
-
-label start:
-
-	# Show a background. This uses a placeholder by default, but you can
-	# add a file (named either "bg room.png" or "bg room.jpg") to the
-	# images directory to show it.
-
-	scene bg room
-
-	# This shows a character sprite. A placeholder is used, but you can
-	# replace it by adding a file named "sword.png" to the images
-	# directory.
-	show sword
-
-	# These display lines of dialogue.
-	k "I’m so tired..."
-	s "Rough day?"
-	k "Rough life. But yes, today has been ... eventful"
-	s "Eventful - that's certainly a way to describe whatever happened to leave you here, covered in the blood of your enemies. And quite of a bit of your own blood too."
-	s "And there's something new today, something delicious, something I haven't seen in you in a long time. Is that fear?"
-	menu:
-		"What do you fear?"
-		"I fear the end":
-			call fear_the_end
-		"I fear my end":
-			call fear_my_end
-	s "Not me. I am but a tool. Used and discarded, but never truly able to end."
-	k "All this talk about ends..."
-	s "..."
-	s "So, what’s the plan?"
-	k "Plan?"
-	s "Heroes always have a plan."
-	menu: 
-		"Heh. I’m all out.":
-			call all_out
-		"Heroes wouldn’t be hiding while the world burns.":
-			call world_burn
-		
-	s "Well then..."
-	s "A dead hero can’t save the world."
-	k "It sounds like you’ve got a plan. Does that make you a hero?"
-	s "Not a hero. But perhaps the tool to change fate."
-	k "How do you mean that?"
-	s "I am a legendary sword, wielded by heroes to alter the course of entire wars, even civilizations. My blade makes my wielder an unstoppable force, rendering ti"
-	k "How lucky of me."
-	return
-
-label fear_the_end: 
-	s "The end of what? The end of this battle? The end of this war? Your own end?"
-	k "The end of this kingdom, and my people's dreams. Every passing moment I can feel their dreams being burned away like fireflies, no matter how I may clutch at them... they are surely lost the longer I sit here."
-	k "Why am I even talking to you? When so much is being lost?"
-	s "Yes, everything will end - unless you're willing to pay the right price."
-	k "How long have you waited to try and strike this bargain? You don't ever stop trying do you? I suppose your wretched 'dreams' never end."
-	return
-
-label fear_my_end:
-	s "Your end?"
-	k "Our side was always fated to lose."
-	s "Is fate not what you make of it?"
-	k "Posh words for a thing made to bring death."
-	return
-	
-label all_out:
-	s "Oh. I see. So you’ve given up, right?"
-	k "Given up? Don’t try to bait me, dear sword."
-	s "Bait only works if there’s something there to catch. I simply meant to ask what you meant by 'all out'."
-	k "I’m all out of ideas. All out of allies. All out of energy. All out of blood pretty soon. All out of..."
-	s "..."
-	k "I just wanted to see the moon one last time. Know the peace of night one last time. Perhaps have a conversation with a nonsensical sentient sword."
-	s "What if this sentient sword had some ideas?"
-	k "Ah, there’s the bait again. Last minute saviors are a thing of fairytales. Or perhaps nightmares?"
-	s "One person’s fairytale is another person’s nightmare."
-	k "Ah but both are dreams. Hmm... dreams..."
-	s "There you go again, drifting away from our conversation. My first in many centuries actually. I feel like I deserve your full attention."
-	k "Centuries? This castle has only been here for maybe a century. I was posted here 20 years ago and I've roamed every one of these halls and rooms. I've never seen you before. How is it we happen to meet and have this discussion right before the end?"
-	s "People like bragging about doing things on their own. They're ashamed of the tools they had to use to get the job done. So I get hidden away a lot. Deep dungeons. Locked vaults. Faraway castles that no one cares about"
-	k "Did the king bring you here?"
-	s "Hard to tell when hidden away in a bag. But I remember fighting. A lot of fighting. A lot of cursing and crying. Then darkness."
-	k 
-	menu: 
-		"Are you a cursed sword?":
-			call cursed_sword
-		"All of that sounds like bad news":
-			call bad_news
-	return
-
-label cursed_sword:
-	s "Cursed is a subjective term. Do I morph a human into something he never was before? No. Does my wielder have more choices they can make once they have me by hand? I'd like to think of myself as an opportunity maker"
-	k "People can be terrible if given the incentive. But I'd not be naive enough to say people don't seek power and whatever gives them that power is a gift and a curse depending on who you are. My question has always been, to what extent can you ignore the consequences? I'm guessing you'd guarentee me a win tonight if I picked you up?"
-	s "Consequences and guilt are not in my purview."
-	k "You're not wrong. I'm sure every person who picked you up thought that they'd be able to control themselves. 20 years I've protected the people here. So many of them are lying dead out there. What will it mean to save the few remaining? There are supposed to be reinforcements coming but who knows when."
-	s "Is there a minimum life count when it's worth the trouble?"
-	k "Again, you confuse me for a fairytale hero. Heroes don't hide while the world burns." 
-	#This end jumps into the world_burn label.
-	return
-label bad_news:
-	k "And I've had bad news all day. I don't need to add something to my life that causes all that bad news. I've had regular ol' swords and that's terrible enough. And while I'm on the topic of bad news, where did they come from? Those caves have been empty for decades. There haven't even been bear or wolf attacks recently. Actually come to think of it, I can't remember the last time I got a report from the forest scouts about people being attacked by any animals. It used to be a regular thing."
-	s "Maybe the animals got bored of human flesh. Maybe they all moved on"
-	k "Or there weren't there to attack. I've seen kids spending more and more time out there in the deep forests. I've wondered what made them so bold. Argh, I should have looked into it more. Maybe I could have seen this coming. Stopped it before..."
-	s: "Feeling guilty about consequences that you couldn't predict seems to be a common human emotion. Do you think the monsters out there have guilt about their attack? Or the people they eat?"
-	k "You speak so easily about such gore. And coming from me, that's saying a lot. But you're not wrong. I don't think those monsters even know what they're attacking. They're just mindless and ravaging every living thing they see. I heard a story around a campfire when I was a child about a purge that happened around these parts. I never put it together that this castle was the place and that the purge meant an attack of monsters in the middle of the night."
-	s "Feels like this has happened before. And it will happen again. Unless..."
-	k "Sigh. And we come back to it now huh? Alright let's put everything on the table."
-	#This returns you to the world_burn label
-	return
-
-label world_burn:
-	s "If heroes don't hide while the world burns and you are not a hero, then what is your purpose on this seemingly last day?"
-	k "Well I came in here to enjoy a quiet, moon filled night before..."
-	s "And the plan was to lay down and die?"
-	k "When you put it so bluntly, I feel like a coward. But essentially yes. I'm hurt and it isn't a small wound. I can barely stand. It hurts every time I breathe in deeply. I've led a life full of violence. I wanted one night of peace. My last night I wanted spent on this cool stone floor."
-	s "Sounds nice."
-	k "It is. It was. Until a talking sword gave me the one thing I really didn't need at this point. Hope. Tell me straight sword, can you help win this battle tonight?"
-	s "Yes"
-	k "Woah. I expected more cryptic talk and riddles. Stories always have these be a test of wills and intelligence. The hero solves the sword's puzzles before he earns it."
-	s "Puzzles bore me. And there is little wit and intelligence to weild me so why would I waste my time on it? And we've already established that you're not the hero of this story."
-	k "Fair point. Even if you give me the edge with the battle, I am still hurt. Is this one those last hurrahs thing? I weild you, I win but die at the end of it?"
-	s "Your most fatal wounds will heal enough to let you live. There is no promise that you won't get hurt anew during the battle to come. But yes, you will get an edge. My edge. And it will be a glory to behold."
-	k "You think pretty highly of yourself. But I guess I woudn't want a depressed talking sword. You speak of glory. What about after? Will I be able to put you down? Will I be filled with bloodlust and start killing everything in sight? Like those monsters out there?"
-	s "You have a lot of stories about swords huh?"
-	k "Once you have soldiers who fight for you, scouts who report to you, and pages who run around for you, one starts to have more free time for stories."
-	s "Feels like the swords don't get much of a say. How would you feel if all of your secrets were spilled into books? Your mystery and intrigue taken away by tales of morality and hero worship?"
-	k "So you're saying I shouldn't ask more questions? Leave it to intrigue and mystery?"
-	s "I'm saying sometimes you look at the goal and pick up to the tool you need to get to that goal."
-	K "Alright. One last question then. What happened to your previous master?"
-	s "Oh that's an easy one. You slayed him an hour ago."
-	return
+k "I’m so tired..."
+s "Rough day?"
+k "Rough life. But yes, today has been ... eventful"
+s "Eventful - that's certainly a way to describe whatever happened to leave you here, covered in the blood of your enemies. And quite of a bit of your own blood too."
+s "And there's something new today, something delicious, something I haven't seen in you in a long time. Is that fear?"
+menu "What do you fear?":
+	"I fear the end":
+		s "The end of what? The end of this battle? The end of this war? Your own end?"
+		k "The end of this kingdom, and my people's dreams. Every passing moment I can feel their dreams being burned away like fireflies, no matter how I may clutch at them... they are surely lost the longer I sit here."
+		k "Why am I even talking to you? When so much is being lost?"
+		s "Yes, everything will end - unless you're willing to pay the right price."
+		k "How long have you waited to try and strike this bargain? You don't ever stop trying do you? I suppose your wretched 'dreams' never end."
+	"I fear my end":
+		s "Your end?"
+		k "Our side was always fated to lose."
+		s "Is fate not what you make of it?"
+		k "Posh words for a thing made to bring death."
+menu_end
+s "Not me. I am but a tool. Used and discarded, but never truly able to end."
+k "All this talk about ends..."
+s "..."
+s "So, what’s the plan?"
+k "Plan?"
+s "Heroes always have a plan."
+menu "TODO: need a prompt":
+	"Heh. I’m all out.":
+		s "Oh. I see. So you’ve given up, right?"
+		k "Given up? Don’t try to bait me, dear sword."
+		s "Bait only works if there’s something there to catch. I simply meant to ask what you meant by 'all out'."
+		k "I’m all out of ideas. All out of allies. All out of energy. All out of blood pretty soon. All out of..."
+		s "..."
+		k "I just wanted to see the moon one last time. Know the peace of night one last time. Perhaps have a conversation with a nonsensical sentient sword."
+		s "What if this sentient sword had some ideas?"
+		k "Ah, there’s the bait again. Last minute saviors are a thing of fairytales. Or perhaps nightmares?"
+		s "One person’s fairytale is another person’s nightmare."
+		k "Ah but both are dreams. Hmm... dreams..."
+		s "There you go again, drifting away from our conversation. My first in many centuries actually. I feel like I deserve your full attention."
+		k "Centuries? This castle has only been here for maybe a century. I was posted here 20 years ago and I've roamed every one of these halls and rooms. I've never seen you before. How is it we happen to meet and have this discussion right before the end?"
+		s "People like bragging about doing things on their own. They're ashamed of the tools they had to use to get the job done. So I get hidden away a lot. Deep dungeons. Locked vaults. Faraway castles that no one cares about"
+		k "Did the king bring you here?"
+		s "Hard to tell when hidden away in a bag. But I remember fighting. A lot of fighting. A lot of cursing and crying. Then darkness."
+			menu "TODO - need a prompt #2": 
+			"Are you a cursed sword?":
+				s "Cursed is a subjective term. Do I morph a human into something he never was before? No. Does my wielder have more choices they can make once they have me by hand? I'd like to think of myself as an opportunity maker"
+				k "People can be terrible if given the incentive. But I'd not be naive enough to say people don't seek power and whatever gives them that power is a gift and a curse depending on who you are. My question has always been, to what extent can you ignore the consequences? I'm guessing you'd guarentee me a win tonight if I picked you up?"
+				s "Consequences and guilt are not in my purview."
+				k "You're not wrong. I'm sure every person who picked you up thought that they'd be able to control themselves. 20 years I've protected the people here. So many of them are lying dead out there. What will it mean to save the few remaining? There are supposed to be reinforcements coming but who knows when."
+				s "Is there a minimum life count when it's worth the trouble?"
+				k "Again, you confuse me for a fairytale hero. Heroes don't hide while the world burns." 
+			"All of that sounds like bad news":
+				k "And I've had bad news all day. I don't need to add something to my life that causes all that bad news. I've had regular ol' swords and that's terrible enough. And while I'm on the topic of bad news, where did they come from? Those caves have been empty for decades. There haven't even been bear or wolf attacks recently. Actually come to think of it, I can't remember the last time I got a report from the forest scouts about people being attacked by any animals. It used to be a regular thing."
+				s "Maybe the animals got bored of human flesh. Maybe they all moved on"
+				k "Or there weren't there to attack. I've seen kids spending more and more time out there in the deep forests. I've wondered what made them so bold. Argh, I should have looked into it more. Maybe I could have seen this coming. Stopped it before..."
+				s: "Feeling guilty about consequences that you couldn't predict seems to be a common human emotion. Do you think the monsters out there have guilt about their attack? Or the people they eat?"
+				k "You speak so easily about such gore. And coming from me, that's saying a lot. But you're not wrong. I don't think those monsters even know what they're attacking. They're just mindless and ravaging every living thing they see. I heard a story around a campfire when I was a child about a purge that happened around these parts. I never put it together that this castle was the place and that the purge meant an attack of monsters in the middle of the night."
+				s "Feels like this has happened before. And it will happen again. Unless..."
+				k "Sigh. And we come back to it now huh? Alright let's put everything on the table."
+		menu_end
+	"Heroes wouldn’t be hiding while the world burns.":
+		s "TODO: Need to add some kind of response from the sword here"		
+menu_end
+s "Well then..."
+s "A dead hero can’t save the world."
+k "It sounds like you’ve got a plan. Does that make you a hero?"
+s "Not a hero. But perhaps the tool to change fate."
+k "How do you mean that?"
+s "I am a legendary sword, wielded by heroes to alter the course of entire wars, even civilizations. My blade makes my wielder an unstoppable force, rendering ti"
+k "How lucky of me."
+s "If heroes don't hide while the world burns and you are not a hero, then what is your purpose on this seemingly last day?"
+k "Well I came in here to enjoy a quiet, moon filled night before..."
+s "And the plan was to lay down and die?"
+k "When you put it so bluntly, I feel like a coward. But essentially yes. I'm hurt and it isn't a small wound. I can barely stand. It hurts every time I breathe in deeply. I've led a life full of violence. I wanted one night of peace. My last night I wanted spent on this cool stone floor."
+s "Sounds nice."
+k "It is. It was. Until a talking sword gave me the one thing I really didn't need at this point. Hope. Tell me straight sword, can you help win this battle tonight?"
+s "Yes"
+k "Woah. I expected more cryptic talk and riddles. Stories always have these be a test of wills and intelligence. The hero solves the sword's puzzles before he earns it."
+s "Puzzles bore me. And there is little wit and intelligence to weild me so why would I waste my time on it? And we've already established that you're not the hero of this story."
+k "Fair point. Even if you give me the edge with the battle, I am still hurt. Is this one those last hurrahs thing? I weild you, I win but die at the end of it?"
+s "Your most fatal wounds will heal enough to let you live. There is no promise that you won't get hurt anew during the battle to come. But yes, you will get an edge. My edge. And it will be a glory to behold."
+k "You think pretty highly of yourself. But I guess I woudn't want a depressed talking sword. You speak of glory. What about after? Will I be able to put you down? Will I be filled with bloodlust and start killing everything in sight? Like those monsters out there?"
+s "You have a lot of stories about swords huh?"
+k "Once you have soldiers who fight for you, scouts who report to you, and pages who run around for you, one starts to have more free time for stories."
+s "Feels like the swords don't get much of a say. How would you feel if all of your secrets were spilled into books? Your mystery and intrigue taken away by tales of morality and hero worship?"
+k "So you're saying I shouldn't ask more questions? Leave it to intrigue and mystery?"
+s "I'm saying sometimes you look at the goal and pick up to the tool you need to get to that goal."
+K "Alright. One last question then. What happened to your previous master?"
+s "Oh that's an easy one. You slayed him an hour ago."
 
 #The background fades a bit with a new window popping up - So what do you do? Do you choose the sword and win the battle? Or do you end the night peacefully on your own terms?
 #If the player chooses to pick up the sword, the following epilogue appears: The knight felt his worst injuries stitch up, felt his strength return and his eyes cleared up. The battle was indeed glorious and the few innocents he saved would drink to his name for generations to come. But what they never knew were his whereabouts. The last thing anyone ever knew was him chasing the monsters deep into the caves from whence they came pouring out that night. Some say he's still fighting, being healed just enough and being driven just enough by the sword for glory. Many have gone into the caves looking for him but either never came out or came out having hit a dead end, claiming they'd found the ends of the cave system but no person or even an animal. Just emptiness.
