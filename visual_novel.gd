@@ -1,6 +1,8 @@
 class_name VisualNovel extends Node
 
 @onready var dialogue_label : RichTextLabel = %DialogueLabel
+@onready var answer_one_button : Button = %AnswerOneButton
+@onready var answer_two_button : Button = %AnswerTwoButton
 
 var dialogue_lines = ["Hi", "How's it going?", "OK bye"]
 var dialogue_index = 0
@@ -140,23 +142,50 @@ func deactivate()->void:
 
 var running_game_menu = ""
 var running_game_branch = ""
+var waiting_for_choice = false
+
+func next_dialogue_line() -> void:
+	print("Waiting for choice: ", waiting_for_choice)
+	if waiting_for_choice:
+		# TODO: Handle cursor
+		return
+	
+	dialogue_index += 1
+	var dia = game_script.instructions[running_game_menu][running_game_branch].pop_front()
+	if(dia is Dictionary and "menu_name" not in dia and "previous_menu" in dia):
+		running_game_menu = dia["previous_menu"]
+		running_game_branch = dia["previous_branch"]
+		dia = game_script.instructions[running_game_menu][running_game_branch].pop_front()
+	print(dia)
+	if dia is Dictionary:
+		running_game_menu = dia["menu_name"]
+		dia = running_game_menu + "\n"
+		var choices = game_script.instructions[running_game_menu].keys()
+		# TODO: Show more any number of choices, not just two (if ever needed)
+		answer_one_button.text = choices[0]
+		answer_two_button.text = choices[1]
+		running_game_branch = choices[0]
+		answer_one_button.visible = true
+		answer_two_button.visible = true
+		waiting_for_choice = true
+	dialogue_label.text = dia
+
+
 func _unhandled_key_input(event: InputEvent) -> void:  
 	if event.is_action_pressed("ui_accept"):
-		dialogue_index += 1
-		var dia = game_script.instructions[running_game_menu][running_game_branch].pop_front()
-		if(dia is Dictionary and "previous_menu" in dia):
-			running_game_menu = dia["previous_menu"]
-			running_game_branch = dia["previous_branch"]
-			#running_game_menu = game_script.menu_stack.pop_back()
-			#running_game_branch = game_script.branch_stack.pop_back()
-			dia = game_script.instructions[running_game_menu][running_game_branch].pop_front()
-		print(dia)
-		if dia is Dictionary:
-			running_game_menu = dia["menu_name"]
-			dia = running_game_menu + "\n"
-			var choices = game_script.instructions[running_game_menu].keys()
-			# TODO: Show more any number of choices, not just two
-			dia += choices[0] + "\n"
-			dia += choices[1] + "\n"
-			running_game_branch = choices[0]
-		dialogue_label.text = dia
+		next_dialogue_line()
+
+func _on_answer_one_button_pressed() -> void:
+	running_game_branch = answer_one_button.text
+	answer_one_button.visible = false
+	answer_two_button.visible = false
+	waiting_for_choice = false
+	dialogue_label.text = "k: " + running_game_branch
+
+
+func _on_answer_two_button_pressed() -> void:
+	running_game_branch = answer_two_button.text
+	answer_one_button.visible = false
+	answer_two_button.visible = false
+	waiting_for_choice = false
+	dialogue_label.text = "k: " + running_game_branch

@@ -2,6 +2,7 @@ extends Node
 
 @onready var main_menu: MainMenu = %MainMenu
 @onready var settings_menu: SettingsMenu = %SettingsMenu
+@onready var visual_novel: VisualNovel = %VisualNovel
 
 func _ready() -> void:
 	# TODO: Play the music at the current volume from the settings menu
@@ -19,6 +20,7 @@ func _on_settings_menu_return_pressed() -> void:
 
 func _on_main_menu_new_game_pressed() -> void:
 	main_menu.visible = false
+	main_menu.deactivate()
 	settings_menu.visible = false
-	# TODO: Start the main game scene
-	pass # Replace with function body.
+	visual_novel.visible = true
+	visual_novel.activate()

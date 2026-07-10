@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b3bbwafvrc8c0" path="res://main_menu.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://cafoyi0w7d0ie" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://2xxoncxeah2f" path="res://settings_menu.tscn" id="3_feb5d"]
+[ext_resource type="PackedScene" uid="uid://mmttyvjeel0p" path="res://visual_novel.tscn" id="4_fc0e3"]
 
 [node name="Game" type="Node" unique_id=243095038]
 script = ExtResource("1_e2o6t")
@@ -11,6 +12,10 @@ script = ExtResource("1_e2o6t")
 unique_name_in_owner = true
 
 [node name="SettingsMenu" parent="." unique_id=433415326 instance=ExtResource("3_feb5d")]
+unique_name_in_owner = true
+visible = false
+
+[node name="VisualNovel" parent="." unique_id=1225728842 instance=ExtResource("4_fc0e3")]
 unique_name_in_owner = true
 visible = false
 
