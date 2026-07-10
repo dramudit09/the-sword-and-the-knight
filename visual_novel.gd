@@ -18,6 +18,8 @@ class GameScript:
 	var menus : Array = []
 	var current_menu : String = ""
 	var current_branch : String = ""
+	var previous_menu : String = ""
+	var previous_branch : String = ""
 	var menu_stack : Array = ["",]
 	var branch_stack : Array = ["",]
 	var current_menu_data : Dictionary = {
@@ -39,16 +41,29 @@ class GameScript:
 		}
 		self.instructions[self.current_menu][self.current_branch].push_back(new_instruction)
 		self.instructions[menu_name] = {}
+		self.previous_menu = self.current_menu
 		self.menu_stack.push_back(self.current_menu)
+		self.previous_branch = self.current_branch
 		self.branch_stack.push_back(self.current_branch)
 		self.current_menu = menu_name
 		self.current_branch = ""
 	
 	func end_menu() -> void:
+		# Let the current branch know how to switch back to a previous menu/path
+		self.instructions[self.current_menu][current_branch].push_back({
+			"previous_menu" : self.previous_menu,
+			"previous_branch" : self.previous_branch
+		})		
 		self.current_menu = menu_stack.pop_back()
 		self.current_branch = branch_stack.pop_back()
 	
 	func new_branch(choice_text) -> void:
+		# Let the current branch know how to switch back to a previous menu/path
+		if(self.current_branch in self.instructions[self.current_menu]):
+			self.instructions[self.current_menu][self.current_branch].push_back({
+				"previous_menu" : self.previous_menu,
+				"previous_branch" : self.previous_branch
+			})
 		self.current_branch = choice_text
 		self.instructions[self.current_menu][choice_text] = []
 		
@@ -129,11 +144,11 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
 		dialogue_index += 1
 		var dia = game_script.instructions[running_game_menu][running_game_branch].pop_front()
-		if(not dia):
-			print(game_script.menu_stack)
-			print(game_script.branch_stack)
-			running_game_menu = game_script.menu_stack.pop_back()
-			running_game_branch = game_script.branch_stack.pop_back()
+		if(dia is Dictionary and "previous_menu" in dia):
+			running_game_menu = dia["previous_menu"]
+			running_game_branch = dia["previous_branch"]
+			#running_game_menu = game_script.menu_stack.pop_back()
+			#running_game_branch = game_script.branch_stack.pop_back()
 			dia = game_script.instructions[running_game_menu][running_game_branch].pop_front()
 		print(dia)
 		if dia is Dictionary:
