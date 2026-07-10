@@ -3,3 +3,6 @@
 /android/
 *.png.import
 *.tmp
+index.*
+libgodot*
+*.zip
