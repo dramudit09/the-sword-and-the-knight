@@ -1,6 +1,6 @@
 class_name VisualNovel extends Node
 
-@onready var dialogue_label : RichTextLabel = %DialogueLabel
+@onready var typewriter_text_label : TypewriterTextLabel = %TypewriterTextLabel
 @onready var answer_one_button : Button = %AnswerOneButton
 @onready var answer_two_button : Button = %AnswerTwoButton
 
@@ -119,12 +119,11 @@ func process_script():
 			# Menu ending
 			# Line looks like: menu_end
 			game_script.end_menu()
-	#print(JSON.stringify(game_script.instructions["TODO: need a prompt"]))
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	process_script()
-	dialogue_label.text = dialogue_lines[dialogue_index]
+	typewriter_text_label.new_dialogue(dialogue_lines[dialogue_index])
 	if get_tree().current_scene == self:
 		set_process_unhandled_key_input(true)
 	else:
@@ -152,12 +151,13 @@ func next_dialogue_line() -> void:
 	
 	dialogue_index += 1
 	var dia = game_script.instructions[running_game_menu][running_game_branch].pop_front()
-	if(dia is Dictionary and "menu_name" not in dia and "previous_menu" in dia):
+	while(dia is Dictionary and "menu_name" not in dia and "previous_menu" in dia):
 		running_game_menu = dia["previous_menu"]
 		running_game_branch = dia["previous_branch"]
 		dia = game_script.instructions[running_game_menu][running_game_branch].pop_front()
 	print(dia)
 	if dia is Dictionary:
+		print(dia)
 		running_game_menu = dia["menu_name"]
 		dia = running_game_menu + "\n"
 		var choices = game_script.instructions[running_game_menu].keys()
@@ -168,7 +168,7 @@ func next_dialogue_line() -> void:
 		answer_one_button.visible = true
 		answer_two_button.visible = true
 		waiting_for_choice = true
-	dialogue_label.text = dia
+	typewriter_text_label.new_dialogue(dia)
 
 
 func _unhandled_key_input(event: InputEvent) -> void:  
@@ -180,7 +180,7 @@ func _on_answer_one_button_pressed() -> void:
 	answer_one_button.visible = false
 	answer_two_button.visible = false
 	waiting_for_choice = false
-	dialogue_label.text = "k: " + running_game_branch
+	typewriter_text_label.new_dialogue("k: " + running_game_branch)
 
 
 func _on_answer_two_button_pressed() -> void:
@@ -188,4 +188,4 @@ func _on_answer_two_button_pressed() -> void:
 	answer_one_button.visible = false
 	answer_two_button.visible = false
 	waiting_for_choice = false
-	dialogue_label.text = "k: " + running_game_branch
+	typewriter_text_label.new_dialogue("k: " + running_game_branch)

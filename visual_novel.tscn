@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://wgniki0563wm" path="res://visual_novel.gd" id="1_4uc8f"]
 [ext_resource type="Texture2D" uid="uid://dyamdk03rd5kw" path="res://The Sword and Knight Background.png" id="2_5cwds"]
+[ext_resource type="PackedScene" uid="uid://cs0mja1av18j6" path="res://typewriter_text_label.tscn" id="3_ydd33"]
 
 [node name="VisualNovel" type="Control" unique_id=50900963]
 layout_mode = 3
@@ -21,14 +22,13 @@ size_flags_horizontal = 6
 size_flags_vertical = 3
 texture = ExtResource("2_5cwds")
 
-[node name="DialogueLabel" type="RichTextLabel" parent="." unique_id=1295800170]
+[node name="TypewriterTextLabel" parent="." unique_id=228757068 instance=ExtResource("3_ydd33")]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 10.0
-offset_top = 440.0
-offset_right = 951.0
+offset_left = 17.0
+offset_top = 446.0
+offset_right = 879.0
 offset_bottom = 534.0
-text = "Test Text"
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1322835687]
 layout_mode = 1
@@ -61,6 +61,40 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "That"
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1904976790]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 396.0
+offset_right = 176.0
+offset_bottom = 435.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer" unique_id=1388113167]
+layout_mode = 2
+text = "Knight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonList" type="VBoxContainer" parent="." unique_id=759545648]
+layout_mode = 0
+offset_left = 883.0
+offset_top = 438.0
+offset_right = 954.0
+offset_bottom = 539.0
+alignment = 2
+
+[node name="SaveButton" type="Button" parent="ButtonList" unique_id=1806266685]
+layout_mode = 2
+text = "Save
+"
+
+[node name="LoadButton" type="Button" parent="ButtonList" unique_id=1236767299]
+layout_mode = 2
+text = "Load"
+
+[node name="HomeButton" type="Button" parent="ButtonList" unique_id=616351274]
+layout_mode = 2
+text = "Home"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/AnswerOneButton" to="." method="_on_answer_one_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/AnswerTwoButton" to="." method="_on_answer_two_button_pressed"]

@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cs0mja1av18j6"]
+
+[ext_resource type="Script" uid="uid://ds1ncb2tre1lw" path="res://typewriter_text_label.gd" id="1_3d1iw"]
+
+[node name="TypewriterTextLabel" type="RichTextLabel" unique_id=228757068]
+offset_right = 254.0
+offset_bottom = 342.0
+text = "This is a very long line of text for testing out our scrolling text display, it should go across a few lines so we can see what it looks like as it \"types\" out the text. This is a very long line of text for testing out our scrolling text display, it should go across a few lines so we can see what it looks like as it \"types\" out the text."
+visible_characters = 0
+visible_characters_behavior = 1
+visible_ratio = 0.0
+script = ExtResource("1_3d1iw")
