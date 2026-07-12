@@ -24,3 +24,4 @@ func _on_main_menu_new_game_pressed() -> void:
 	settings_menu.visible = false
 	visual_novel.visible = true
 	visual_novel.activate()
+	visual_novel.start(settings_menu.text_speed)

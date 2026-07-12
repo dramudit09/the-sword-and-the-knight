@@ -143,6 +143,10 @@ var running_game_menu = ""
 var running_game_branch = ""
 var waiting_for_choice = false
 
+func start(speed) -> void:
+	typewriter_text_label.speed = speed
+	next_dialogue_line()
+
 func next_dialogue_line() -> void:
 	print("Waiting for choice: ", waiting_for_choice)
 	if waiting_for_choice:
