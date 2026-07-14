@@ -19,10 +19,11 @@ func new_dialogue(text) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if not self.visible:
+		return
 	# Don't update visible characters if we've displayed all the text already
 	if self.visible_characters >= len(self.text):
 		return
 	time_since_text_changed += delta
 	if time_since_text_changed:
 		self.visible_characters = time_since_text_changed * speed_option_to_multiplier[speed]
-		print(time_since_text_changed)

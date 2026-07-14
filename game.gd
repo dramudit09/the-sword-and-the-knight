@@ -1,27 +1,38 @@
 extends Node
 
-@onready var main_menu: MainMenu = %MainMenu
-@onready var settings_menu: SettingsMenu = %SettingsMenu
-@onready var visual_novel: VisualNovel = %VisualNovel
+var main_menu: MainMenu
+var settings_menu: SettingsMenu
+var visual_novel: VisualNovel
+
+var text_speed = "Normal"
 
 func _ready() -> void:
-	# TODO: Play the music at the current volume from the settings menu
-	# Use settings_menu.volume
-	pass
+	var main_menu_res = load("res://main_menu.tscn")
+	main_menu = main_menu_res.instantiate()
+	main_menu.settings_pressed.connect(_on_main_menu_settings_pressed)
+	main_menu.new_game_pressed.connect(_on_main_menu_new_game_pressed)
+	main_menu.activate()
+	self.add_child(main_menu)
 
 func _on_main_menu_settings_pressed() -> void:
-	main_menu.visible = false
-	settings_menu.visible = true
+	var settings_scene_res = load("res://settings_menu.tscn")
+	settings_menu = settings_scene_res.instantiate()
+	settings_menu.return_pressed.connect(_on_settings_menu_return_pressed)
+	main_menu.deactivate()
+	self.remove_child(main_menu)
+	self.add_child(settings_menu)
 
 func _on_settings_menu_return_pressed() -> void:
-	main_menu.visible = true
-	settings_menu.visible = false
-
+	main_menu.activate()
+	self.add_child(main_menu)
+	self.remove_child(settings_menu)
 
 func _on_main_menu_new_game_pressed() -> void:
-	main_menu.visible = false
 	main_menu.deactivate()
-	settings_menu.visible = false
-	visual_novel.visible = true
+	self.remove_child(main_menu)
+	self.remove_child(settings_menu)
+	var visual_novel_res = load("res://visual_novel.tscn")
+	visual_novel = visual_novel_res.instantiate()
+	self.add_child(visual_novel)
 	visual_novel.activate()
-	visual_novel.start(settings_menu.text_speed)
+	visual_novel.start(text_speed)
