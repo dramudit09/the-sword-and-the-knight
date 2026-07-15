@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cseydte4gl7pr"]
+
+[ext_resource type="Script" uid="uid://1412rc86r08x" path="res://intro_screen.gd" id="1_4pqbn"]
+[ext_resource type="Script" uid="uid://ds1ncb2tre1lw" path="res://typewriter_text_label.gd" id="2_6c87n"]
+
+[node name="IntroScreen" type="MarginContainer" unique_id=1235156893]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4pqbn")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=900023021]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TypewriterTextLabel" type="RichTextLabel" parent="." unique_id=1382648247]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+text = "The knight stands, his blade soaked in blood
+Outside monsters pour forth like a flood
+
+The knight stares at a sword on the wall
+He speaks and his words echo through the hall"
+fit_content = true
+horizontal_alignment = 1
+visible_characters = 0
+visible_characters_behavior = 1
+visible_ratio = 0.0
+script = ExtResource("2_6c87n")
+metadata/_custom_type_script = "uid://ds1ncb2tre1lw"
