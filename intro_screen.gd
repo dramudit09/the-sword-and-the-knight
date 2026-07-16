@@ -1,4 +1,4 @@
-extends MarginContainer
+class_name IntroScreen extends MarginContainer
 
 @onready var color_rect : ColorRect = %ColorRect
 @onready var typewriter_text_label : TypewriterTextLabel = %TypewriterTextLabel
@@ -21,7 +21,8 @@ var pause_timer = 1.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	typewriter_text_label.speed = "Slow"
-	set_process_unhandled_key_input(true)	
+	set_process_unhandled_key_input(false)
+
 
 func _process(delta: float) -> void:
 	match current_stage:
@@ -29,6 +30,7 @@ func _process(delta: float) -> void:
 			pause_timer -= delta
 			if pause_timer <= 0.0:
 				current_stage = Stages.FADE
+				set_process_unhandled_key_input(true)
 			return
 		Stages.FADE:
 			current_fade_color -= delta * 0.20
@@ -55,7 +57,6 @@ func _process(delta: float) -> void:
 			
 
 func skip_fade() -> void:
-	print("got here 2")
 	color_rect.color.r = 0.0
 	color_rect.color.g = 0.0
 	color_rect.color.b = 0.1
