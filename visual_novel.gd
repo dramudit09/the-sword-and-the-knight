@@ -3,9 +3,12 @@ class_name VisualNovel extends Node
 @onready var typewriter_text_label : TypewriterTextLabel = %TypewriterTextLabel
 @onready var answer_one_button : Button = %AnswerOneButton
 @onready var answer_two_button : Button = %AnswerTwoButton
+@onready var character_panel : PanelContainer = %CharacterPanel
+@onready var character_label: RichTextLabel = %CharacterLabel
 
 var dialogue_lines = ["Hi", "How's it going?", "OK bye"]
 var dialogue_index = 0
+var characters = {}
 
 class Dialogue:
 	func _init(character_name: String, speech: String) -> void:
@@ -72,8 +75,6 @@ class GameScript:
 var game_script = GameScript.new()
 
 func process_script():
-	var characters = {}
-	
 	var file = FileAccess.open("res://text/script.txt", FileAccess.READ)
 	var content = file.get_as_text()
 	var current_menu_label = "start"
@@ -92,6 +93,8 @@ func process_script():
 			var reference_name = spline[1]
 			var char_name = quoted_words[1]
 			print("Found character definition: ", reference_name, "/", char_name)
+			characters[reference_name] = char_name
+			print("characters: ", characters)
 		elif spline[0] == "menu":
 			# Start of a new menu
 			# Line looks like: menu "What do you fear?":
@@ -120,10 +123,18 @@ func process_script():
 			# Line looks like: menu_end
 			game_script.end_menu()
 
+func change_dialogue(new_line, character):
+	typewriter_text_label.new_dialogue(new_line)
+	if character:
+		character_panel.visible = true
+		character_label.text = character
+	else:
+		character_panel.visible = false
+		
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	process_script()
-	typewriter_text_label.new_dialogue(dialogue_lines[dialogue_index])
+	next_dialogue_line()
 	if get_tree().current_scene == self:
 		set_process_unhandled_key_input(true)
 	else:
@@ -160,6 +171,7 @@ func next_dialogue_line() -> void:
 		running_game_branch = dia["previous_branch"]
 		dia = game_script.instructions[running_game_menu][running_game_branch].pop_front()
 	print(dia)
+	var character = "Question:"
 	if dia is Dictionary:
 		print(dia)
 		running_game_menu = dia["menu_name"]
@@ -172,8 +184,13 @@ func next_dialogue_line() -> void:
 		answer_one_button.visible = true
 		answer_two_button.visible = true
 		waiting_for_choice = true
-	typewriter_text_label.new_dialogue(dia)
-
+	else:
+		# Regular dialogue, something like: k "I know who you are!"
+		if dia:
+			var character_ref = dia[0]
+			dia = dia.substr(2, len(dia)-2)
+			character = characters[character_ref]
+	change_dialogue(dia, character)
 
 func _unhandled_key_input(event: InputEvent) -> void:  
 	if event.is_action_pressed("ui_accept"):
@@ -184,12 +201,11 @@ func _on_answer_one_button_pressed() -> void:
 	answer_one_button.visible = false
 	answer_two_button.visible = false
 	waiting_for_choice = false
-	typewriter_text_label.new_dialogue("k: " + running_game_branch)
-
+	change_dialogue(running_game_branch, "")
 
 func _on_answer_two_button_pressed() -> void:
 	running_game_branch = answer_two_button.text
 	answer_one_button.visible = false
 	answer_two_button.visible = false
 	waiting_for_choice = false
-	typewriter_text_label.new_dialogue("k: " + running_game_branch)
+	change_dialogue(running_game_branch, "")

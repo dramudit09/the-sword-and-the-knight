@@ -62,14 +62,16 @@ visible = false
 layout_mode = 2
 text = "That"
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1904976790]
+[node name="CharacterPanel" type="PanelContainer" parent="." unique_id=1904976790]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 13.0
 offset_top = 396.0
 offset_right = 176.0
 offset_bottom = 435.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer" unique_id=1388113167]
+[node name="CharacterLabel" type="RichTextLabel" parent="CharacterPanel" unique_id=1388113167]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Knight"
 horizontal_alignment = 1
